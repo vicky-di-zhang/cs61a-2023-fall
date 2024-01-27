@@ -87,7 +87,32 @@ def nearest_two(x):
 
     """
     power_of_two = 1.0
-    "*** YOUR CODE HERE ***"
+    if x < power_of_two:
+        i = 0.0
+        while power_of_two > x:
+            i -= 1.0
+            next_power_of_two = 2 ** i
+            if next_power_of_two == x:
+                return float(next_power_of_two)
+            elif next_power_of_two < x and power_of_two > x:
+                if abs(next_power_of_two - x) >= abs(power_of_two - x):
+                    return float(power_of_two)
+                else:
+                    return float(next_power_of_two)        
+            power_of_two = float(next_power_of_two) 
+    elif x > power_of_two:
+        i = 0.0
+        while power_of_two < x:
+            i += 1.0
+            next_power_of_two = 2 ** i
+            if next_power_of_two == x:
+                return float(next_power_of_two)
+            elif next_power_of_two > x and power_of_two < x:
+                if abs(next_power_of_two - x) <= abs(power_of_two - x):
+                    return float(next_power_of_two)
+                else:
+                    return power_of_two
+            power_of_two = float(next_power_of_two)                        
     return power_of_two
 
 
@@ -106,7 +131,13 @@ def make_repeater(func, n):
     >>> make_repeater(square, 0)(5) # Yes, it makes sense to apply the function zero times!
     5
     """
-    "*** YOUR CODE HERE ***"
+    def helper(x):
+        result = x
+        for i in range(n): 
+            result = func(result)
+        return result
+    return helper
+
 
 def composer(func1, func2):
     """Returns a function f, such that f(x) = func1(func2(x))."""
@@ -122,7 +153,9 @@ def apply_twice(func):
     >>> apply_twice(square)(2)
     16
     """
-    "*** YOUR CODE HERE ***"
+    def helper(x):
+        return func(func(x))
+    return helper
 
 
 def div_by_primes_under(n):
@@ -137,12 +170,16 @@ def div_by_primes_under(n):
     False
     """
     checker = lambda x: False
-    i = ____________________________
-    while ____________________________:
+    i = 2
+    while i <= n:
         if not checker(i):
-            checker = ____________________________
-        i = ____________________________
-    return ____________________________
+            checker = (lambda f, i: lambda x: f(x) or x % i == 0)(checker, i)
+        i = i + 1
+    return checker
+         
+        
+
+
 
 def div_by_primes_under_no_lambda(n):
     """
@@ -157,14 +194,14 @@ def div_by_primes_under_no_lambda(n):
     """
     def checker(x):
         return False
-    i = ____________________________
-    while ____________________________:
+    i = 2
+    while i <= n:
         if not checker(i):
-            def outer(____________________________):
-                def inner(____________________________):
-                    return ____________________________
-                return ____________________________
-            checker = ____________________________
-        i = ____________________________
-    return ____________________________
+            def outer(x,f=checker,i=i):
+                def inner(i=i):
+                    return x % i == 0 or f(x)
+                return inner()
+            checker = outer
+        i = i + 1
+    return checker
 

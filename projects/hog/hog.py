@@ -268,9 +268,15 @@ def make_averaged(original_function, samples_count=1000):
     3.0
     """
     # BEGIN PROBLEM 8
-    "*** YOUR CODE HERE ***"
+    def helper(*args):
+        n = samples_count
+        result = 0
+        for _ in range(n):
+            result += original_function(*args)
+        result /= n
+        return result
+    return helper
     # END PROBLEM 8
-
 
 def max_scoring_num_rolls(dice=six_sided, samples_count=1000):
     """Return the number of dice (1 to 10) that gives the highest average turn score
@@ -282,7 +288,15 @@ def max_scoring_num_rolls(dice=six_sided, samples_count=1000):
     1
     """
     # BEGIN PROBLEM 9
-    "*** YOUR CODE HERE ***"
+    max_average = 0
+    num_rolls = 0
+    for i in range(1, 11):
+        averaged_roll = make_averaged(roll_dice, samples_count)
+        average = averaged_roll(i, dice)
+        if average > max_average:
+            max_average = average
+            num_rolls = i
+    return num_rolls
     # END PROBLEM 9
 
 
@@ -327,24 +341,43 @@ def boar_strategy(score, opponent_score, threshold=11, num_rolls=6):
     points, and returns NUM_ROLLS otherwise. Ignore score and Sus Fuss.
     """
     # BEGIN PROBLEM 10
-    return num_rolls  # Remove this line once implemented.
+    boar_score = boar_brawl(score, opponent_score)
+    if boar_score >= threshold:
+        return 0
+    else:
+        return num_rolls
     # END PROBLEM 10
 
 
 def sus_strategy(score, opponent_score, threshold=11, num_rolls=6):
     """This strategy returns 0 dice when your score would increase by at least threshold."""
     # BEGIN PROBLEM 11
-    return num_rolls  # Remove this line once implemented.
+    predicted_score = sus_update(0, score, opponent_score, dice=six_sided)
+    if predicted_score - score >= threshold:
+        return 0
+    else:
+        return num_rolls
     # END PROBLEM 11
 
 
-def final_strategy(score, opponent_score):
+#def final_strategy(score, opponent_score):  # fail ;(
     """Write a brief description of your final strategy.
-
-    *** YOUR DESCRIPTION HERE ***
+    return the num_rolls:
+    when score > opponent_score, check if num_rolls = 0,1,2 can make score to 100
+    when the score of num_rolls = 0 more than num_rolls = 6, don't use threshold
     """
     # BEGIN PROBLEM 12
-    return 6  # Remove this line once implemented.
+    # GOAL = 100  
+    # if sus_update(0, score, opponent_score) >= GOAL or \
+    #    sus_update(1, score, opponent_score) >= GOAL or \
+    #    sus_update(2, score, opponent_score) >= GOAL:
+    #     return 0  
+    # if score > opponent_score:
+    #     return 3
+    # if sus_update(0, score, opponent_score, dice=six_sided) > make_averaged(roll_dice, 1000)(6, six_sided):
+    #     return 0
+    # return 6
+
     # END PROBLEM 12
 
 

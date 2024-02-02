@@ -167,7 +167,19 @@ def autocorrect(typed_word, word_list, diff_function, limit):
     'testing'
     """
     # BEGIN PROBLEM 5
-    "*** YOUR CODE HERE ***"
+    for i in range(len(word_list)):
+        if typed_word == word_list[i]:
+            return typed_word
+    def func(typed_word, word_list, diff_function, limit):
+        dic = {}
+        for i in range(len(word_list)):
+            if diff_function(typed_word,word_list[i],limit) <= limit:
+                dic[word_list[i]]=diff_function(typed_word,word_list[i],limit)
+        if dic == {}:
+            return typed_word
+        else:
+            return min(dic,key= lambda k:dic[k])
+    return func(typed_word, word_list, diff_function, limit)
     # END PROBLEM 5
 
 
@@ -194,7 +206,12 @@ def feline_fixes(typed, source, limit):
     5
     """
     # BEGIN PROBLEM 6
-    assert False, 'Remove this line'
+    orig_limit = limit
+    if limit == -1:
+        return orig_limit + 1
+    if len(typed) == 0 or len(source) == 0:
+        return abs(len(typed) - len(source))
+    return  (typed[0] != source[0]) + feline_fixes(typed[1:], source[1:], limit - (typed[0] != source[0]))
     # END PROBLEM 6
 
 
@@ -218,22 +235,25 @@ def minimum_mewtations(typed, source, limit):
     >>> minimum_mewtations("ckiteus", "kittens", big_limit) # ckiteus -> kiteus -> kitteus -> kittens
     3
     """
-    assert False, 'Remove this line'
-    if ___________: # Base cases should go here, you may add more base cases as needed.
+    orig_limit = limit
+    if limit < 0:
+        return orig_limit + 1
+    if len(typed) == 0 or len(source) == 0: # Base cases should go here, you may add more base cases as needed.
         # BEGIN
-        "*** YOUR CODE HERE ***"
-        # END
+        return abs(len(typed) - len(source))
+        # END    
     # Recursive cases should go below here
-    if ___________: # Feel free to remove or add additional cases
+    if typed[0] == source[0]: # Feel free to remove or add additional cases
         # BEGIN
-        "*** YOUR CODE HERE ***"
+        return minimum_mewtations(typed[1:], source[1:], limit)
         # END
+
     else:
-        add = ... # Fill in these lines
-        remove = ...
-        substitute = ...
+        add = 1 + minimum_mewtations(source[0]+typed, source,limit-1)
+        remove = 1 + minimum_mewtations(typed[1:],source,limit-1)
+        substitute = 1 + (minimum_mewtations(source[0] + typed[1:],source,limit-1))
         # BEGIN
-        "*** YOUR CODE HERE ***"
+        return min(add,remove,substitute)
         # END
 
 
@@ -274,10 +294,23 @@ def report_progress(typed, source, user_id, upload):
     0.2
     """
     # BEGIN PROBLEM 8
-    "*** YOUR CODE HERE ***"
+    dic = {}
+    de = len(source)
+    n = 0
+    dic['id'] = user_id
+    i = 0
+    while i < len(typed):
+        if typed[i] == source[i]:
+            n += 1
+            i += 1
+        else:
+            break
+    ratio = n / de
+    dic['progress'] = ratio
+    upload(dic)
+    return ratio
     # END PROBLEM 8
-
-
+    
 def time_per_word(words, timestamps_per_player):
     """Given timing data, return a match data abstraction, which contains a
     list of words and the amount of time each player took to type each word.
@@ -296,7 +329,18 @@ def time_per_word(words, timestamps_per_player):
     [[6, 3, 6, 2], [10, 6, 1, 2]]
     """
     # BEGIN PROBLEM 9
-    "*** YOUR CODE HERE ***"
+    times = []
+    for player in timestamps_per_player:
+        player_time = []
+        
+        for t in range(1, len(player)):
+            word_time = player[t] - player[t-1]
+            player_time.append(word_time)
+            
+        times.append(player_time)
+        
+    match = {"words": words, "times": times}
+    return match
     # END PROBLEM 9
 
 
@@ -318,7 +362,20 @@ def fastest_words(match):
     player_indices = range(len(get_all_times(match)))  # contains an *index* for each player
     word_indices = range(len(get_all_words(match)))    # contains an *index* for each word
     # BEGIN PROBLEM 10
-    "*** YOUR CODE HERE ***"
+    num_players = len(get_all_times(match))
+    num_words = len(get_all_words(match))
+    
+    result = [[] for _ in range(num_players)]  # has p [] (number of players)
+        
+    for w in range(num_words):
+        word_w = []
+        for p in range(num_players):
+            word_w.append(time(match,p,w))
+        w_in_p = word_w.index(min(word_w))
+        result[w_in_p].append(get_word(match, w))
+    
+    return result
+        
     # END PROBLEM 10
 
 
@@ -367,7 +424,7 @@ def match_string(match):
     """A helper function that takes in a match data abstraction and returns a string representation of it"""
     return f"match({get_all_words(match)}, {get_all_times(match)})"
 
-enable_multiplayer = False  # Change to True when you're ready to race.
+enable_multiplayer = True  # Change to True when you're ready to race.
 
 ##########################
 # Command Line Interface #

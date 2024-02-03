@@ -304,14 +304,31 @@ def hailstone_tree(n, h):
         5
           10
     """
+    # if h == 0:
+    #     return tree(n)
+    # branches = []
+    # if h >= 1:
+    #     if (n - 1) % 3 == 0:
+    #         branches += hailstone_tree((n - 1) // 3, h - 1)
+    #     branches += hailstone_tree(n * 2, h - 1)
+    # return tree(n, branches)
+
+
+
+    # if h == 0:
+    #     return tree(n)
+    # elif (n - 1) % 3 == 0 and  ((n - 1) % 3) % 2 == 1 and (n - 1) % 3>1:
+    #     return tree(n ,[hailstone_tree((n - 1) // 3, h - 1),hailstone_tree(n*2, h - 1)])
+    # else:
+    #     return tree(n ,[hailstone_tree(n*2, h - 1)]) 
+        
     if h == 0:
         return tree(n)
-    branches = []
-    if h >= 1:
-        if (n - 1) % 3 == 0:
-            branches += hailstone_tree((n - 1) // 3, h - 1)
-        branches += hailstone_tree(n * 2, h - 1)
+    branches = [hailstone_tree(n*2, h - 1)]
+    if  (n - 1) % 3 == 0 and  ((n - 1) // 3) % 2 == 1 and (n - 1) // 3 > 1:
+        branches += [hailstone_tree((n - 1) // 3, h - 1)]
     return tree(n, branches)
+
 
 
 def change_abstraction(change):

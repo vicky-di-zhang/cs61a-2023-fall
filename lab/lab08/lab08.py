@@ -17,7 +17,16 @@ def duplicate_link(link, val):
     >>> z
     Link(1, Link(2, Link(2, Link(2, Link(2, Link(3))))))
     """
-    "*** YOUR CODE HERE ***"
+    if link is Link.empty:
+        return
+    
+    if link.first == val:
+        link.rest = Link(val, link.rest)
+        duplicate_link(link.rest.rest,val)
+    else:
+        duplicate_link(link.rest,val)
+
+ 
 
 
 def convert_link(link):
@@ -29,7 +38,16 @@ def convert_link(link):
     >>> convert_link(Link.empty)
     []
     """
-    "*** YOUR CODE HERE ***"
+    result = []
+    if link == Link.empty:
+        return result
+    if link.rest is Link.empty:
+        result.append(link.first)
+    elif type(link.rest) == Link:
+        result.append(link.first)
+        result.extend(convert_link(link.rest))
+    return result
+        
 
 
 def multiply_lnks(lst_of_lnks):
@@ -48,12 +66,12 @@ def multiply_lnks(lst_of_lnks):
     Link(48, Link(12, Link(0)))
     """
     product = 1
-    for _________ in ________________:
-        if __________________________________________:
-            _________________________________
-        ___________________
-    lst_of_lnks_rests = [_________ for _________ in ________________]
-    return _________________________________________________
+    for i in lst_of_lnks:
+        if i is Link.empty:
+            return Link.empty
+        product *= i.first
+    lst_of_lnks_rests = [i.rest for i in lst_of_lnks]
+    return Link(product,multiply_lnks(lst_of_lnks_rests))
 
 
 class Link:

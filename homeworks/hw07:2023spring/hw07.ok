@@ -1,0 +1,25 @@
+{
+    "name": "Homework 7",
+    "endpoint": "cal/cs61a/sp23/hw07",
+    "src": [
+        "hw07.py"
+    ],
+    "tests": {
+        "hw*.py": "doctest",
+        "tests/*.py": "ok_test"
+    },
+    "default_tests": [
+        "store_digits",
+        "deep_map_mut",
+        "two_list",
+        "add_d_leaves"
+    ],
+    "protocols": [
+        "restore",
+        "file_contents",
+        "grading",
+        "analytics",
+        "unlock",
+        "backup"
+    ]
+}

@@ -1,5 +1,8 @@
 # cs61a Fall 2023 --- Self-Study Project
-This project encompasses the exercise that I completed when I was self-studying the CS61a 2023fall course at Berkeley University. 
+- **This project encompasses the exercise that I completed when I was self-studying the CS61a 2023fall course at Berkeley University. **
+
+
+
 
 - **My Self-Study Journey of cs61a Fall 2023:**
   - I started self-study of this course on January 20, 2024, and I completed all the course and Lab/hw/projects exercises except scheme-related part on February 20, 2024.

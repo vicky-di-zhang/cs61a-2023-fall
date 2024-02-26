@@ -1,10 +1,12 @@
 # cs61a Fall 2023
 - **Level:**
-  basic cs course
+  - basic cs course
   
 - **My Plan:**
-  - **Start time:** 2024-01-20
-  - **Goal:** finish the whole course (all the Lab / hw / projects / exams included)  before 2024-03-20
+  - **Start time:**
+    - 2024-01-20
+  - **Goal:**
+    - finish the whole course (all the Lab / hw / projects / exams included)  before 2024-03-20
 
   
 - **Video Resource I used:**

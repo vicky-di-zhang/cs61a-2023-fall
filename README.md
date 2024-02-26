@@ -1,8 +1,9 @@
 # cs61a Fall 2023 --- Self-Study Project
 This project encompasses the exercise that I completed when I was self-studying the CS61a 2023fall course at Berkeley University. 
- I started self-study of this course on January 20, 2024, and I completed all the course and Lab/hw/projects exercises except scheme-related part on February 20, 2024.
 
-I think cs61a is a very good basic CS course. Its teaching videos and lectures of Q&A part are very good, but the most amazing part of this course is its various exercises. The questions are very well designed, which makes me have a deeper understanding of the content of the lecture. I also like projects. Especially ANTS. After finishing the code, I played ANTS all night. ANTS gave me my first taste of the fun of programming.
+- **My Self-Study Journey of cs61a Fall 2023:**
+ - I started self-study of this course on January 20, 2024, and I completed all the course and Lab/hw/projects exercises except scheme-related part on February 20, 2024.
+ - I think cs61a is a very good basic CS course. Its teaching videos and lectures of Q&A part are very good, but the most amazing part of this course is its various exercises. The questions are very well designed, which makes me have a deeper understanding of the content of the lecture. I also like projects. Especially ANTS. After finishing the code, I played ANTS all night. ANTS gave me my first taste of the fun of programming.
 
 Thanks to the official website of the University of Berkeley for providing the course structure, videos and corresponding exercises. And John DeNero and Hany Farid are the best!
 

@@ -1,5 +1,5 @@
 # cs61a Fall 2023 --- Self-Study Project
-- **This project encompasses the exercise that I completed when I was self-studying the CS61a 2023fall course at Berkeley University. **
+- This project encompasses the exercise that I completed when I was self-studying the CS61a 2023fall course at Berkeley University. 
 
 
 

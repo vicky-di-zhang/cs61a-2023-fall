@@ -1,12 +1,11 @@
 # cs61a Fall 2023
-- **Start time:**
-  2024-01-20
-
-- **Goal:**
-  finish the whole course (all the Lab / hw / projects / exams included)  before 2024-03-20
-
 - **Level:**
   basic cs course
+  
+- **My Plan:**
+  - **Start time:** 2024-01-20
+  - **Goal:** finish the whole course (all the Lab / hw / projects / exams included)  before 2024-03-20
+
   
 - **Video Resource I used:**
   - 👉🏼Berkeley university cs61a Fall 2023(OFFICIAL):[https://inst.eecs.berkeley.edu/~cs61a/fa23/](url)
